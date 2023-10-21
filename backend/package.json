@@ -1,7 +1,7 @@
 {
-  "name": "mern-realtime-whiteboard-sharing-app-backend",
+  "name": "codraw",
   "version": "1.0.0",
-  "description": "this is the backend for mern realtime white board sharing app",
+  "description": "mern-codraw",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -10,9 +10,9 @@
   "author": "Vineet",
   "license": "MIT",
   "dependencies": {
-    "cors": "^2.8.5",
     "express": "^4.18.2",
     "nodemon": "^3.0.1",
-    "socket.io": "^4.7.2"
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2"
   }
 }
