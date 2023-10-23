@@ -8,7 +8,8 @@ import Sidebar from "./Sidebar";
 
 import "./index.css";
 
-const server = "http://localhost:5000";
+const server = "http://localhost:4000";
+
 const connectionOptions = {
   "force new connection": true,
   reconnectionAttempts: "Infinity",
@@ -26,32 +27,32 @@ const App = () => {
 
   const uuid = () => {
     var S4 = () => {
-      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     };
     return (
-      S4() +
-      S4() +
-      "-" +
-      S4() +
-      "-" +
-      S4() +
-      "-" +
-      S4() +
-      "-" +
-      S4() +
-      S4() +
-      S4()
+        S4() +
+        S4() +
+        "-" +
+        S4() +
+        "-" +
+        S4() +
+        "-" +
+        S4() +
+        "-" +
+        S4() +
+        S4() +
+        S4()
     );
   };
 
   useEffect(() => {
-    if (roomJoined) {
-      socket.emit("user-joined", user);
-    }
+      if (roomJoined) {
+          socket.emit("user-joined", user);
+      }
   }, [roomJoined]);
 
   return (
-    <div className="home">
+    <div className="w-full h-screen p-0 m-0 bg-[#D5FFD0]">
       <ToastContainer />
       {roomJoined ? (
         <>

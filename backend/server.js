@@ -25,22 +25,22 @@ app.get("/", (req, res) => {
 // socket.io
 let imageUrl, userRoom;
 io.on("connection", (socket) => {
-  socket.on("user-joined", (data) => {
-    const { roomId, userId, userName, host, presenter } = data;
-    userRoom = roomId;
-    const user = userJoin(socket.id, userName, roomId, host, presenter);
-    const roomUsers = getUsers(user.room);
-    socket.join(user.room);
-    socket.emit("message", {
-      message: "Welcome to ChatRoom",
-    });
-    socket.broadcast.to(user.room).emit("message", {
-      message: `${user.username} has joined`,
-    });
+    socket.on("user-joined", (data) => {
+        const { roomId, userId, userName, host, presenter } = data;
+        userRoom = roomId;
+        const user = userJoin(socket.id, userName, roomId, host, presenter);
+        const roomUsers = getUsers(user.room);
+        socket.join(user.room);
+        socket.emit("message", {
+            message: "Welcome to ChatRoom",
+        });
+        socket.broadcast.to(user.room).emit("message", {
+            message: `${user.username} has joined`,
+        });
 
-    io.to(user.room).emit("users", roomUsers);
-    io.to(user.room).emit("canvasImage", imageUrl);
-  });
+        io.to(user.room).emit("users", roomUsers);
+        io.to(user.room).emit("canvasImage", imageUrl);
+    });
 
   socket.on("drawing", (data) => {
     imageUrl = data;
@@ -61,7 +61,7 @@ io.on("connection", (socket) => {
 });
 
 // serve on port
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 4000;
 
 server.listen(PORT, () =>
   console.log(`server is listening on http://localhost:${PORT}`)

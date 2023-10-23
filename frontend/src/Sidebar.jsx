@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import { Socket } from "socket.io-client";
+import React, { useRef } from 'react';
 
 const Sidebar = ({ users, user, socket }) => {
   const sideBarRef = useRef(null);
@@ -8,43 +7,46 @@ const Sidebar = ({ users, user, socket }) => {
     sideBarRef.current.style.left = 0;
   };
   const closeSideBar = () => {
-    sideBarRef.current.style.left = -100 + "%";
+    sideBarRef.current.style.left = '-100%';
   };
   return (
-    <>
+    <div className="flex flex-row">
       <button
-        className="btn btn-dark btn-sm"
+        className="bg-red-500 text-white font-bold px-3 py-1 rounded-md"
         onClick={openSideBar}
-        style={{ position: "absolute", top: "5%", left: "5%" }}
+        style={{ position: 'absolute', top: '21px', left: '40px' }}
       >
         Users
       </button>
       <div
-        className="position-fixed pt-2 h-100 bg-dark"
+        className="fixed pt-2 h-full bg-[#0C356A]"
         ref={sideBarRef}
         style={{
-          width: "150px",
-          left: "-100%",
-          transition: "0.3s linear",
-          zIndex: "9999",
+          width: '250px',
+          left: '-100%',
+          transition: '0.3s linear',
+          zIndex: '9999',
         }}
       >
-        <button
-          className="btn btn-block border-0 form-control rounded-0 btn-light"
-          onClick={closeSideBar}
-        >
-          Close
-        </button>
-        <div className="w-100 mt-5">
+        <div className=' ml-[25px] mt-[13px]'>
+          <button
+            className="bg-red-500 text-white w-[200px] font-bold px-3 py-1 rounded-md"
+            onClick={closeSideBar}
+          >
+            Close
+          </button>
+        </div>
+        
+        <div className="w-full mt-5">
           {users.map((usr, index) => (
             <p key={index} className="text-white text-center py-2">
               {usr.username}
-              {usr.id === socket.id && " - (You)"}
+              {usr.id === socket.id && ' - (You)'}
             </p>
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

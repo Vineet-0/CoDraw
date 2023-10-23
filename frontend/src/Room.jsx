@@ -1,14 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import Canvas from "./Canvas";
+import { RiPencilLine } from 'react-icons/ri';
+import { BsSlashLg } from 'react-icons/bs';
+import { BiUndo, BiRedo } from 'react-icons/bi';
+import { BiRectangle } from 'react-icons/bi';
+import openSideBar from './Sidebar.jsx'
+import 'react-toastify/dist/ReactToastify.css';
+
+import { FiUsers } from 'react-icons/fi';
+import { AiOutlineDown } from 'react-icons/ai';
+
 
 const Room = ({ userNo, socket, setUsers, setUserNo }) => {
   const canvasRef = useRef(null);
   const ctx = useRef(null);
+
   const [color, setColor] = useState("#000000");
+  const [color1, setColor1] = useState('#000000');
+  const [color2, setColor2] = useState('#ff0000');
+  const [color3, setColor3] = useState('#0000ff');
+
+  const handleColorChange = (color) => {
+    setColor(color);
+  };
+
   const [elements, setElements] = useState([]);
   const [history, setHistory] = useState([]);
   const [tool, setTool] = useState("pencil");
+  // const [openUserTab, setUserTab] = useState(false);
 
   useEffect(() => {
     socket.on("message", (data) => {
@@ -50,101 +70,137 @@ const Room = ({ userNo, socket, setUsers, setUserNo }) => {
   };
   return (
     <div className="container-fluid">
-      <div className="row">
-        <h1 className="display-5 pt-4 pb-3 text-center">
-          React Drawing App - users online:{userNo}
-        </h1>
-      </div>
-      <div className="flex flex-row justify-center items-center gap-4">
-          <div className="col-md-2">
-              <div className="color-picker d-flex align-items-center justify-content-center">
-                  Color Picker : &nbsp;
-                  <input
-                    type="color"
-                    value={color}
-                    onChange={(e) => setColor(e.target.value)}
-                  />
-              </div>
+      <div className="flex flex-row justify-between items-center text-[#0C356A] px-10 py-4 w-full bg-[#40F8FF]">
+          <div className="w-1/4">
+
           </div>
-          <div className="flex flex-row justify-center">
-              <div className="mx-2">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="tools"
-                    id="pencil"
-                    value="pencil"
-                    checked={tool === "pencil"}
-                    onClick={(e) => setTool(e.target.value)}
-                    readOnly={true}
-                  />
-                  <label className="form-check-label" htmlFor="pencil">
-                    Pencil
-                  </label>
-              </div>
-              <div className="mx-2">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="tools"
-                    id="line"
-                    value="line"
-                    checked={tool === "line"}
-                    onClick={(e) => setTool(e.target.value)}
-                    readOnly={true}
-                  />
-                  <label className="form-check-label" htmlFor="line">
-                    Line
-                  </label>
-              </div>
-              <div className="mx-2">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="tools"
-                    id="rect"
-                    value="rect"
-                    checked={tool === "rect"}
-                    onClick={(e) => setTool(e.target.value)}
-                    readOnly={true}
-                  />
-                  <label className="form-check-label" htmlFor="rect">
-                    Rectangle
-                  </label>
-              </div>
+          <div className="flex flex-row justify-center gap-2">
+              <button
+                  style={
+                      { color: tool === 'pencil' ? '#0C356A' : '#279EFF'}
+                  }
+                  className="form-check-input"
+                  onClick={() => setTool("pencil")}
+                  disabled={tool === "pencil"}
+                >
+                    <RiPencilLine className="text-[25px]" />
+              </button>
+              <button
+                  style={
+                      { color: tool === 'line' ? '#0C356A' : '#279EFF'}
+                  }
+                  className="form-check-input"
+                  onClick={() => setTool("line")}
+                  disabled={tool === "line"}
+                >
+                    <BsSlashLg className="text-[25px]" />
+              </button>
+              <button
+                  style={
+                      { color: tool === 'rect' ? '#0C356A' : '#279EFF'}
+                  }
+                  className="form-check-input"
+                  onClick={() => setTool("rect")}
+                  disabled={tool === "rect"}
+                >
+                    <BiRectangle className="text-[25px]" />
+              </button>
+          </div>
+
+          <div className="flex flex-row gap-2">
+            <div>
+              <input
+                className="border-0 rounded-full"
+                type="color"
+                value={color1}
+                onChange={(e) => setColor1(e.target.value)}
+                onClick={() => handleColorChange(color1)}
+                style={{
+                          WebkitAppearance: 'none',
+                          MozAppearance: 'none',
+                          appearance: 'none',
+                          backgroundColor: color1,
+                          width: '20px',
+                          height: '20px',
+                          border: 'none',
+                }}
+              />
+              {/* <AiOutlineDown className="fixed text-white top-8 left-150"/> */}
+            </div>
+            <div>
+              <input
+                className="border-0 rounded-full"
+                type="color"
+                value={color2}
+                onChange={(e) => setColor2(e.target.value)}
+                onClick={() => handleColorChange(color2)}
+                style={{
+                          WebkitAppearance: 'none',
+                          MozAppearance: 'none',
+                          appearance: 'none',
+                          backgroundColor: color2,
+                          width: '20px',
+                          height: '20px',
+                          border: 'none',
+                }}
+              />
+            </div>
+            <div>
+              <input
+                className="border-0 rounded-full"
+                type="color"
+                value={color3}
+                onChange={(e) => setColor3(e.target.value)}
+                onClick={() => handleColorChange(color3)}
+                style={{
+                          WebkitAppearance: 'none',
+                          MozAppearance: 'none',
+                          appearance: 'none',
+                          backgroundColor: color3,
+                          width: '20px',
+                          height: '20px',
+                          border: 'none',
+                }}
+              />
+            </div>
           </div>
 
           <div className="flex flex-row justify-center">
               <button
                 type="button"
-                className="border-2 border-blue-400 px-2 py-1"
+                className="py-1 text-[#0C356A]"
                 disabled={elements.length === 0}
                 onClick={() => undo()}
               >
-                Undo
+                  <BiUndo className="text-[35px]" />
               </button>
               &nbsp;&nbsp;
               <button
                 type="button"
-                className="border-2 border-blue-400 px-2 py-1"
+                className="py-1 text-[#0C356A]"
                 disabled={history.length < 1}
                 onClick={() => redo()}
               >
-                Redo
+                  <BiRedo className="text-[35px]" />
               </button>
           </div>
-          <div className="col-md-1">
-              <div className="color-picker d-flex align-items-center justify-content-center">
-                  <input
-                    type="button"
-                    className="btn btn-danger"
-                    value="clear canvas"
-                    onClick={clearCanvas}
-                  />
-              </div>
+          <div className="flex felx-row justify-center items-center text-[#0C356A]">
+              <FiUsers size={25} />
+              &nbsp;&nbsp;
+              <h1>
+                {userNo}
+              </h1>
+          </div>
+          <div className="bg-red-500 text-white font-bold px-3 py-1 rounded-md">
+              <input
+                type="button"
+                className="btn btn-danger"
+                value="Clear Canvas"
+                onClick={clearCanvas}
+              />
           </div>
       </div>
-      <div className="row">
+      <div className="">
         <Canvas
           canvasRef={canvasRef}
           ctx={ctx}
