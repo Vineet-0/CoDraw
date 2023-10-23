@@ -8,7 +8,7 @@ import Sidebar from "./Sidebar";
 
 import "./index.css";
 
-const server = "http://localhost:4000";
+const server = "https://codraw-backend.onrender.com";
 
 const connectionOptions = {
   "force new connection": true,

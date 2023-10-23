@@ -113,8 +113,10 @@ const Room = ({ userNo, socket, setUsers, setUserNo }) => {
                 className="border-0 rounded-full"
                 type="color"
                 value={color1}
-                onChange={(e) => setColor1(e.target.value)}
-                onClick={() => handleColorChange(color1)}
+                onChange={(e) => {
+                  setColor1(e.target.value);
+                  handleColorChange(e.target.value);
+                }}
                 style={{
                           WebkitAppearance: 'none',
                           MozAppearance: 'none',
@@ -132,8 +134,10 @@ const Room = ({ userNo, socket, setUsers, setUserNo }) => {
                 className="border-0 rounded-full"
                 type="color"
                 value={color2}
-                onChange={(e) => setColor2(e.target.value)}
-                onClick={() => handleColorChange(color2)}
+                onChange={(e) => {
+                  setColor2(e.target.value);
+                  handleColorChange(e.target.value);
+                }}
                 style={{
                           WebkitAppearance: 'none',
                           MozAppearance: 'none',
@@ -150,8 +154,10 @@ const Room = ({ userNo, socket, setUsers, setUserNo }) => {
                 className="border-0 rounded-full"
                 type="color"
                 value={color3}
-                onChange={(e) => setColor3(e.target.value)}
-                onClick={() => handleColorChange(color3)}
+                onChange={(e) => {
+                  setColor3(e.target.value);
+                  handleColorChange(e.target.value);
+                }}
                 style={{
                           WebkitAppearance: 'none',
                           MozAppearance: 'none',
