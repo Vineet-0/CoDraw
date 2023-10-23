@@ -154,7 +154,7 @@ const Canvas = ({
 
   return (
     <div
-      className="col-md-8 overflow-hidden border border-dark px-0 mt-4 mx-4 bg-white"
+      className="col-md-8 overflow-hidden border border-dark mt-4 mx-4 bg-white"
       style={{ height: "750px" }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}

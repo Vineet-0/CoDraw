@@ -12,7 +12,7 @@ import { FiUsers } from 'react-icons/fi';
 import { AiOutlineDown } from 'react-icons/ai';
 
 
-const Room = ({ userNo, socket, setUsers, setUserNo }) => {
+const Room = ({ userNo, socket, setUsers, setUserNo, roomId  }) => {
   const canvasRef = useRef(null);
   const ctx = useRef(null);
 
@@ -117,6 +117,10 @@ const Room = ({ userNo, socket, setUsers, setUserNo }) => {
                   setColor1(e.target.value);
                   handleColorChange(e.target.value);
                 }}
+                onClick={(e) => {
+                  setColor1(e.target.value);
+                  handleColorChange(e.target.value);
+                }}
                 style={{
                           WebkitAppearance: 'none',
                           MozAppearance: 'none',
@@ -138,6 +142,10 @@ const Room = ({ userNo, socket, setUsers, setUserNo }) => {
                   setColor2(e.target.value);
                   handleColorChange(e.target.value);
                 }}
+                onClick={(e) => {
+                  setColor2(e.target.value);
+                  handleColorChange(e.target.value);
+                }}
                 style={{
                           WebkitAppearance: 'none',
                           MozAppearance: 'none',
@@ -155,6 +163,10 @@ const Room = ({ userNo, socket, setUsers, setUserNo }) => {
                 type="color"
                 value={color3}
                 onChange={(e) => {
+                  setColor3(e.target.value);
+                  handleColorChange(e.target.value);
+                }}
+                onClick={(e) => {
                   setColor3(e.target.value);
                   handleColorChange(e.target.value);
                 }}
@@ -217,6 +229,20 @@ const Room = ({ userNo, socket, setUsers, setUserNo }) => {
           socket={socket}
         />
       </div>
+      {/* <div className="flex flex-row justify-center">
+        <div className="w-[200px]">
+          <button
+            className="text-[#0C356A] text-[20px] font-bold w-full mx-auto py-2 rounded-lg bg-[#40F8FF]"
+            type="button"
+            onClick={() => {
+              navigator.clipboard.writeText(roomId);
+              toast.success("Room Id Copied to Clipboard!");
+            }}
+          >
+            Copy Room ID
+          </button>
+        </div>
+      </div> */}
     </div>
   );
 };

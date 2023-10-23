@@ -33,7 +33,7 @@ const ClientRoom = ({ userNo, socket, setUsers, setUserNo }) => {
       </div>
       <div className="">
         <div
-          className="col-md-8 overflow-hidden border border-dark px-0 mx-4 mt-4"
+          className="col-md-8 overflow-hidden border border-dark mx-4 mt-4"
           style={{ height: "750px" }}
         >
           <img className="w-100 h-100 bg-white" ref={imgRef} src="" alt="image" />

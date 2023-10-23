@@ -20,7 +20,7 @@ const JoinCreateRoom = ({ uuid, setUser, setRoomJoined }) => {
         if (!name) return toast.dark("Please enter your name!");
 
         setUser({
-            roomId,
+            roomId : "1234",
             userId: uuid(),
             userName: name,
             host: true,
