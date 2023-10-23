@@ -24,7 +24,7 @@ const ClientRoom = ({ userNo, socket, setUsers, setUserNo }) => {
     <div className="container-fluid">
       <div className="ml-auto text-[#0C356A] px-10 py-6 w-full bg-[#40F8FF]">
           <div className="flex felx-row justify-center items-center text-[#0C356A]">
-              <FiUsers size={25} />
+              <FiUsers size={27} />
               &nbsp;&nbsp;
               <h1>
                 {userNo}
