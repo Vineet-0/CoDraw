@@ -78,7 +78,7 @@ const Room = ({ userNo, socket, setUsers, setUserNo, roomId  }) => {
             <div className="w-1/4">
 
             </div>
-                {roomId ? <div>{roomId}</div> : <div>Hello</div>}
+                {/* {roomId ? <div>{roomId}</div> : <div>Hello</div>} */}
             <div className="flex flex-row justify-center gap-2">
                 <button
                     style={
